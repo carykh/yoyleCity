@@ -1,0 +1,42 @@
+void drawHoriRoad(int x, int y, boolean bridge){
+  if(bridge){
+    fill(68,39,0);
+  }else{
+    fill(20,20,20,255);
+  }
+  beginShape();
+  texture(roadImage);
+  vertex(x,y,(elev[y][x]-water[y][x])*slope+roadHeight,0,0);
+  vertex(x,y+roadWidth,inter(elev[y][x]-water[y][x],elev[y+1][x]-water[y+1][x],roadWidth)*slope+roadHeight,0,roadImage.height);
+  vertex(x+1,y+roadWidth,inter(elev[y][x+1]-water[y][x+1],elev[y+1][x+1]-water[y+1][x+1],roadWidth)*slope+roadHeight,roadImage.width,roadImage.height);
+  vertex(x+1,y,(elev[y][x+1]-water[y][x+1])*slope+roadHeight,roadImage.width,0);
+  endShape();
+  fill(255,255,0,255);
+}
+void drawVertRoad(int x, int y, boolean bridge){
+  if(bridge){
+    fill(68,39,0);
+  }else{
+    fill(20,20,20,255);
+  }
+  beginShape();
+  texture(roadImage);
+  vertex(x,y,(elev[y][x]-water[y][x])*slope+roadHeight,0,0);
+  vertex(x,y+1,(elev[y+1][x]-water[y+1][x])*slope+roadHeight,roadImage.width,0);
+  vertex(x+roadWidth,y+1,inter(elev[y+1][x]-water[y+1][x],elev[y+1][x+1]-water[y+1][x+1],roadWidth)*slope+roadHeight,roadImage.width,roadImage.height);
+  vertex(x+roadWidth,y,inter(elev[y][x]-water[y][x],elev[y][x+1]-water[y][x+1],roadWidth)*slope+roadHeight,0,roadImage.height);
+  endShape();
+}
+void drawRoadPiece(int x, int y, boolean bridge){
+  if(bridge){
+    fill(68,39,0);
+  }else{
+    fill(20,20,20,255);
+  }
+  beginShape();
+  vertex(x,y,(elev[y][x]-water[y][x])*slope+roadHeight);
+  vertex(x,y+roadWidth,inter(elev[y][x]-water[y][x],elev[y+1][x]-water[y+1][x],roadWidth)*slope+roadHeight);
+  vertex(x+roadWidth,y+roadWidth,inter(elev[y][x]-water[y][x],elev[y+1][x+1]-water[y+1][x+1],roadWidth)*slope+roadHeight);
+  vertex(x+roadWidth,y,inter(elev[y][x]-water[y][x],elev[y][x+1]-water[y][x+1],roadWidth)*slope+roadHeight);
+  endShape();
+}
